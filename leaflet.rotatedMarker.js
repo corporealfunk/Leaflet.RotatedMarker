@@ -43,14 +43,34 @@
         },
 
         setRotationAngle: function(angle) {
-            this.options.rotationAngle = angle;
+            var oldRotationAngle = this.options.rotationAngle;
+            var newRotationAngle = angle;
+            var oldRotationOrigin = this.options.rotationOrigin;
+            var newRotationOrigin = oldRotationOrigin;
+            this.options.rotationAngle = newRotationAngle;
             this.update();
+            this.fire('rotated', {
+              oldRotationAngle,
+              newRotationAngle,
+              oldRotationOrigin,
+              newRotationOrigin,
+            });
             return this;
         },
 
         setRotationOrigin: function(origin) {
+            var oldRotationAngle = this.options.rotationAngle;
+            var newRotationAngle = oldRotationAngle;
+            var oldRotationOrigin = this.options.rotationOrigin;
+            var newRotationOrigin = origin;
             this.options.rotationOrigin = origin;
             this.update();
+            this.fire('rotated', {
+              oldRotationAngle,
+              newRotationAngle,
+              oldRotationOrigin,
+              newRotationOrigin,
+            });
             return this;
         }
     });
